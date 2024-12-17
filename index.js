@@ -10,6 +10,7 @@ const weight = document.getElementById("weight");
 const activity = document.getElementById("activity")
 const calculateButton = document.getElementById("calc");
 const clearButton = document.getElementById("clear");
+const resetButton = document.getElementById("reset");
 
 // Getting Variables for Results
 const mildLoss = document.getElementById('result-mild-loss');
@@ -23,6 +24,19 @@ const bmrTitle = document.getElementById('bmr-title');
 
 // Create an Array from the Activity dropdown
 const options = Array.from(activity.options);
+
+
+// Error Checking
+calculateButton.addEventListener("click", function () {
+    if (age.value === "" || heightFeet.value === "" || heightInches.value === "" || weight.value === "") {
+        alert("Please fill out all the required fields.");
+        return;
+    }
+    else {
+        calculate();
+    }
+});
+
 
 function calculate() {
 
@@ -107,8 +121,11 @@ function clearAll() {
     heightFeet.value = ""; // reset feet
     heightInches.value = ""; // reset inches
     weight.value = ""; // reset weight
-    activity.value = activity.options[0].value;
+    activity.value = activity.options[0].value; // reset to BMR
 }
 
-calculateButton.addEventListener("click", calculate);
+function resetAll() {
+    location.reload();
+}
+
 clearButton.addEventListener("click", clearAll);
