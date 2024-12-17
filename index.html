@@ -19,7 +19,7 @@
             <div class="header">
                 <h1>Calorie Calculator (Metric)</h1>
             </div>
-            <form class="content">
+            <div class="content">
                 <!----Age-->
                 <label for="age">Age</label>
                 <input type="number" name="age" id="age" placeholder="ages 15 - 80" min="15" max="80" required>
@@ -60,7 +60,7 @@
                     <button class="calc" id="calc" onclick=calculate()>Calculate</button>
                     <button class="clear" id="clear" onclick=clearAll()>Clear</button>
                 </div>
-            </form>
+            </div>
         </div>
     
         <div class="result-container">
@@ -68,7 +68,40 @@
                 <h1>Results</h1>
             </div>
             <div class="content">
-                <p>No results yet.</p>
+                <div  class="card maintain">
+                    <h3 id="bmr-title">Maintain Weight</h3>
+                    <p id="result-maintain">0</p>
+                </div>
+                <div id="loss-gain-container">
+                    <div class="weight-loss">
+                        <div class="card">
+                            <h3>Mild Weight Loss</h3>
+                            <p id="result-mild-loss">0</p>
+                        </div>
+                        <div class="card">
+                            <h3>Weight Loss</h3>
+                            <p id="result-loss">0</p>
+                        </div>
+                        <div class="card">
+                            <h3>Extreme Weight Loss</h3>
+                            <p id="result-extreme-loss">0</p>
+                        </div>
+                    </div>
+                    <div class="weight-gain">
+                        <div class="card">
+                            <h3>Mild Weight Gain</h3>
+                            <p id="result-mild-gain">0</p>
+                        </div>
+                        <div class="card">
+                            <h3>Weight Gain</h3>
+                            <p id="result-gain">0</p>
+                        </div>
+                        <div class="card">
+                            <h3>Extreme Weight Gain</h3>
+                            <p id="result-extreme-gain">0</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
