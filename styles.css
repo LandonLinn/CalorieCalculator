@@ -111,6 +111,11 @@ select {
     accent-color: var(--dark-red);
 }
 
+ input[type="radio"]{
+        height: 15px;
+        width: 15px;
+    }
+
 .button-container {
     display: flex;
     margin-top: auto;
@@ -246,10 +251,7 @@ button{
         padding: 10px;
     }
 
-    input[type="radio"]{
-        height: 15px;
-        width: 15px;
-    }
+   
 
 }
 
