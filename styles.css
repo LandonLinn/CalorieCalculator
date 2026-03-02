@@ -52,6 +52,7 @@ input,
 select {
     border: 1px solid black;
     height: 35px;
+    width: 100%;
     border-radius: 8px;
     padding-left: 10px;
     margin: 4px 0px;
@@ -225,4 +226,44 @@ button{
 /*Controlling Visible States*/
 .hidden {
     display: none;
+}
+
+/* Responsiveness */
+@media screen and (max-width: 768px) {
+    .card-container{
+        margin-top: 50px;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr 1fr;
+        min-width: 320px;
+    }
+
+    .header{
+        grid-column: 1;
+    }
+
+    .form-container,
+    .results-side{
+        padding: 10px;
+    }
+
+    input[type="radio"]{
+        height: 15px;
+        width: 15px;
+    }
+
+}
+
+
+@media screen and (max-width: 420px) {
+    .header{
+        height: auto;
+        flex-direction: column;
+        gap: 0;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    body{
+        padding: 0;
+    }
 }
