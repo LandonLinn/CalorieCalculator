@@ -4,6 +4,8 @@
     --red: #c1121f;
     --off-white: #f0f0f0;
     --gray: #d3d3d3;
+    --light-blue: #669bbc;
+    --blue: #003049;
 
     --heading: 1.8rem;
     --subheadng: 1rem;
@@ -185,10 +187,27 @@ button{
     border-radius: 5px;
 }
 
+.result-card:nth-child(even) {
+    border: 2px solid var(--light-blue);
+}
+
+.result-card:nth-child(2n+3) {
+    border: 2px solid var(--blue);
+}
+
 .result-card h3 {
     background-color: var(--dark-red);
     padding: 5px;
     color: var(--off-white);
+}
+
+
+.weight-loss{
+    background-color: var(--light-blue)!important;
+}
+
+.weight-gain{
+    background-color: var(--blue)!important;
 }
 
 .result-card p {
