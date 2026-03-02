@@ -1,131 +1,172 @@
 'use strict';
 
+// Date
+const year = new Date().getFullYear();
+const copyright = document.getElementById("copyright");
+copyright.textContent = `© ${year}, Landon Linn`;
+
+// ---- Changing Systems ---- 
+const currentSystem = document.getElementById("current-system"); // Title text
+const imperial = document.getElementById("imperial"); // Radio button
+const metric = document.getElementById("metric"); // Radio button
+
+// Handle Change
+function systemChange(){
+    if(imperial.checked){
+        currentSystem.textContent = "Imperial";
+        // Add bcak in Inches
+        heightInches.classList.remove("hidden");
+
+        // Reset Placeholders
+        height.setAttribute("placeholder", "feet")
+        weight.setAttribute("placeholder", "pounds")
+    } else{
+        currentSystem.textContent = "Metric";
+        // Change placeholder
+        height.setAttribute("placeholder", "centimeters")
+        // Hide Inches
+        heightInches.classList.add("hidden");
+
+        // Reset Placeholders
+        weight.setAttribute("placeholder", "kilograms")
+    }
+
+    return currentSystem.textContent;
+}
+imperial.addEventListener("click", systemChange)
+metric.addEventListener("click", systemChange)
+
 // Creating Variables Using User Inputs
 const age = document.getElementById("age");
 const male = document.getElementById("male");
 const female = document.getElementById("female");
-const heightFeet = document.getElementById("feet");
+
+// Getting Age
+const height = document.getElementById("height");
 const heightInches = document.getElementById("inches");
+
+// Weight
 const weight = document.getElementById("weight");
-const activity = document.getElementById("activity")
-const calculateButton = document.getElementById("calc");
-const clearButton = document.getElementById("clear");
-const resetButton = document.getElementById("reset");
 
-// Getting Variables for Results
-const mildLoss = document.getElementById('result-mild-loss');
-const loss = document.getElementById('result-loss');
-const extremeLoss = document.getElementById('result-extreme-loss');
-const maintain = document.getElementById('result-maintain');
-const mildGain = document.getElementById('result-mild-gain');
-const gain = document.getElementById('result-gain');
-const extremeGain = document.getElementById('result-extreme-gain');
-const bmrTitle = document.getElementById('bmr-title');
-
-// Create an Array from the Activity dropdown
+// Get Activity Selction
+const activity = document.getElementById("activity");
 const options = Array.from(activity.options);
 
 
-// Error Checking
-calculateButton.addEventListener("click", function () {
-    if (age.value === "" || heightFeet.value === "" || heightInches.value === "" || weight.value === "") {
-        alert("Please fill out all the required fields.");
-        return;
-    }
-    else {
-        calculate();
-    }
-});
+// const clearButton = document.getElementById("clear");
+// const resetButton = document.getElementById("reset");
+
+// Getting Variables for Results
+// const mildLoss = document.getElementById('result-mild-loss');
+// const loss = document.getElementById('result-loss');
+// const extremeLoss = document.getElementById('result-extreme-loss');
+// const maintain = document.getElementById('result-maintain');
+// const mildGain = document.getElementById('result-mild-gain');
+// const gain = document.getElementById('result-gain');
+// const extremeGain = document.getElementById('result-extreme-gain');
+// const bmrTitle = document.getElementById('bmr-title');
+
+// Create an Array from the Activity dropdown
 
 
+
+// Calculate
+const calculateButton = document.getElementById("calc");
 function calculate() {
 
-    // Variables
-    const totalHeightInches = ((Number(heightFeet.value) * 12) + Number(heightInches.value));
-    let bmr;
+    let totalHeight = 0;
+    let totalWeight = 0;
 
-    // Solve BMR
-    if (male.checked) {
-        // Metric to Imperial
-        bmr = ((10 * (Number(weight.value) * 0.453592)) + (6.25 * (Number(totalHeightInches) * 2.54)) - (5 * Number(age.value)) + 5);
-    }
-    else{
-        // Metric to Imperial
-        bmr = ((10 * (Number(weight.value) * 0.453592)) + (6.25 * (Number(totalHeightInches) * 2.54)) - (5 * Number(age.value)) + 161);
+    // ---- Imperial Solving ----
+    if(currentSystem.textContent === "Imperial"){
+        // Convert to Metric
+        const totalHeight = Math.floor(((Number(height.value) * 12) + Number(heightInches.value)) * 2.54 );
+        const totalWeight = Number(weight.value);
+        
     }
 
-    // Calculate calories and rates
-    function updateCalories(bmr, multiplier) {
-        const calories = bmr * multiplier;
+    // ---- Metric Solving ----
     
-        mildLoss.textContent = calculateResult(calories, 0.8);
-        loss.textContent = calculateResult(calories, 0.75);
-        extremeLoss.textContent = calculateResult(calories, 0.6);
-        maintain.textContent = calculateResult(calories, 1);
-        mildGain.textContent = calculateResult(calories, 1.1);
-        gain.textContent = calculateResult(calories, 1.2);
-        extremeGain.textContent = calculateResult(calories, 1.3);
-    }
+    
+    // let bmr;
 
-    // Control Title
-    const lossGainContainer = document.getElementById('loss-gain-container');
-    const bmrTitle = document.getElementById('bmr-title');
+    // // Solve BMR
+    // if (male.checked) {
+    //     // Metric to Imperial
+    //     bmr = ((10 * (Number(weight.value) * 0.453592)) + (6.25 * (Number(totalHeightInches) * 2.54)) - (5 * Number(age.value)) + 5);
+    // }
+    // else{
+    //     // Metric to Imperial
+    //     bmr = ((10 * (Number(weight.value) * 0.453592)) + (6.25 * (Number(totalHeightInches) * 2.54)) - (5 * Number(age.value)) + 161);
+    // }
 
-    // Check the selected activity value
-    if (activity.value === 'bmr') {
-        bmrTitle.textContent = 'BMR';
-        lossGainContainer.classList.add('hidden');
-    } else {
-        bmrTitle.textContent = 'Maintain Weight';
-        lossGainContainer.classList.remove('hidden');
-    }
+    // // Calculate calories and rates
+    // function updateCalories(bmr, multiplier) {
+    //     const calories = bmr * multiplier;
+    
+    //     mildLoss.textContent = calculateResult(calories, 0.8);
+    //     loss.textContent = calculateResult(calories, 0.75);
+    //     extremeLoss.textContent = calculateResult(calories, 0.6);
+    //     maintain.textContent = calculateResult(calories, 1);
+    //     mildGain.textContent = calculateResult(calories, 1.1);
+    //     gain.textContent = calculateResult(calories, 1.2);
+    //     extremeGain.textContent = calculateResult(calories, 1.3);
+    // }
+
+    // // Control Title
+    // const lossGainContainer = document.getElementById('loss-gain-container');
+    // const bmrTitle = document.getElementById('bmr-title');
+
+    // // Check the selected activity value
+    // if (activity.value === 'bmr') {
+    //     bmrTitle.textContent = 'BMR';
+    //     lossGainContainer.classList.add('hidden');
+    // } else {
+    //     bmrTitle.textContent = 'Maintain Weight';
+    //     lossGainContainer.classList.remove('hidden');
+    // }
 
 
-    // Solve calories based on activity
-    switch(activity.value){
-        case 'bmr':
-            maintain.textContent = Math.round(bmr);
-            break;
+    // // Solve calories based on activity
+    // switch(activity.value){
+    //     case 'bmr':
+    //         maintain.textContent = Math.round(bmr);
+    //         break;
 
-        case 'sedentary':
-            updateCalories(bmr, 1.2);
-            break;
+    //     case 'sedentary':
+    //         updateCalories(bmr, 1.2);
+    //         break;
 
-        case 'light':
-            updateCalories(bmr, 1.375);
-            break;
+    //     case 'light':
+    //         updateCalories(bmr, 1.375);
+    //         break;
 
-        case 'moderate':
-            updateCalories(bmr, 1.55);
-            break;
+    //     case 'moderate':
+    //         updateCalories(bmr, 1.55);
+    //         break;
 
-        case 'very':
-            updateCalories(bmr, 1.725);
-            break;
+    //     case 'very':
+    //         updateCalories(bmr, 1.725);
+    //         break;
 
-        case 'extra':
-            updateCalories(bmr, 1.9);
-            break;
-    }
+    //     case 'extra':
+    //         updateCalories(bmr, 1.9);
+    //         break;
+    // }
 }
-
-// Calculate final result and return it rounded
-function calculateResult(cals, perc) {
-    return Math.round(cals * perc);
-}
+calculateButton.addEventListener("click", calculate);
 
 // Clear all options
-function clearAll() {
-    age.value = ""; // reset age
-    male.checked = true; // reset radio buttons
-    heightFeet.value = ""; // reset feet
-    heightInches.value = ""; // reset inches
-    weight.value = ""; // reset weight
-    activity.value = activity.options[0].value; // reset to BMR
-}
+// function clearAll() {
+//     age.value = ""; // reset age
+//     male.checked = true; // reset radio buttons
+//     heightFeet.value = ""; // reset feet
+//     heightInches.value = ""; // reset inches
+//     weight.value = ""; // reset weight
+//     activity.value = activity.options[0].value; // reset to BMR
+// }
+// clearButton.addEventListener("click", clearAll);
 
-function resetAll() {
-    location.reload();
-}
-
-clearButton.addEventListener("click", clearAll);
+// function resetAll() {
+    
+// }

@@ -14,100 +14,125 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <div class="calculator-container">
-            <div class="header">
-                <h1>Calorie Calculator (Metric)</h1>
+        <div class="card-container">
+            <!-- Card Header -->
+                <div class="header">
+                    <h1>Calorie Calculator</h1>
+                    <p class="type" id="current-system">Imperial</p>
+                </div>
+            <div>
+                <form class="form-container">
+                    <!-- Toggle -->
+                     <div class="form-input">                
+                        <label for="gender">System</label>
+                        <div class="radio-button">
+                            <input type="radio" name="system" id="imperial" checked required>
+                            <label for="imperial">Imperial</label>
+                        </div>
+                        <div class="radio-button">
+                            <input type="radio" name="system" id="metric" required>
+                            <label for="metric">Metric</label>
+                        </div>
+                    </div>
+
+                    <!----Age-->
+                    <div class="form-input">
+                        <label for="age">Age</label>
+                        <input type="number" name="age" id="age" placeholder="ages 15 - 80" min="15" max="80" required>
+                    </div>
+                    
+                    <!----Gender-->
+                    <div class="form-input">                
+                        <label for="gender">Gender</label>
+                        <div class="radio-button">
+                            <input type="radio" name="gender" id="male" checked required>
+                            <label for="male">Male</label>
+                        </div>
+                        <div class="radio-button">
+                            <input type="radio" name="gender" id="female" required>
+                            <label for="female">Female</label>
+                        </div>
+                    </div>
+
+                    <!----Height-->
+                    <div class="form-input">
+                        <label for="height">Height</label>
+                        <input type="number" name="height" id="height" placeholder="feet" required>
+                        <input type="number" name="height" id="inches" placeholder="inches" required>
+                    </div>
+                    
+
+                    <!----Weight-->
+                    <div class="form-input">
+                        <label for="weight">Weight</label>
+                        <input type="number" name="weight" id="weight" placeholder="pounds" required>
+                    </div>
+                    
+                    <!----Activity-->
+                    <div class="form-input">
+                        <label for="activity">Activity</label>
+                        <select name="activity" id="activity">
+                            <option value="bmr">Basal Metabolic Rate (BMR)</option>
+                            <option value="sedentary">Sedentary: little or no exercise</option>
+                            <option value="light">Lightly active: light exercise/sports 1–3 days per week</option>
+                            <option value="moderate">Moderately active: moderate exercise/sports 3–5 days per week</option>
+                            <option value="very">Very active: hard exercise/sports 6–7 days per week</option>
+                            <option value="extra">Extra active: very hard exercise/physical job</option>
+                        </select>
+                    </div>
+
+                    <!----Submit-->
+                    <div class="button-container">
+                        <button class="calc" id="calc" type="submit">Calculate</button>
+                        <button class="clear" id="clear" onclick=clearAll()>Clear</button>
+                    </div>
+                </form>
+
             </div>
-            <div class="content">
-                <!----Age-->
-                <label for="age">Age</label>
-                <input type="number" name="age" id="age" placeholder="ages 15 - 80" min="15" max="80" required>
-
-                <!----Gender-->
-                <label for="gender">Gender</label>
-                <div class="radio-button">
-                    <input type="radio" name="gender" id="male" checked required>
-                    <label for="male">Male</label>
-                </div>
-                <div class="radio-button">
-                    <input type="radio" name="gender" id="female" required>
-                    <label for="female">Female</label>
-                </div>
-
-                <!----Height-->
-                <label for="height">Height</label>
-                <input type="number" name="height" id="feet" placeholder="feet" required>
-                <input type="number" name="height" id="inches" placeholder="inches" required>
-
-                <!----Weight-->
-                <label for="weight">Weight</label>
-                <input type="number" name="weight" id="weight" placeholder="pounds" required>
-                
-                <!----Activity-->
-                <label for="activity">Activity</label>
-                <select name="activity" id="activity">
-                    <option value="bmr">Basal Metabolic Rate (BMR)</option>
-                    <option value="sedentary">Sedentary: little or no exercise</option>
-                    <option value="light">Lightly active: light exercise/sports 1–3 days per week</option>
-                    <option value="moderate">Moderately active: moderate exercise/sports 3–5 days per week</option>
-                    <option value="very">Very active: hard exercise/sports 6–7 days per week</option>
-                    <option value="extra">Extra active: very hard exercise/physical job</option>
-                </select>
-
-                <!----Submit-->
-                <div class="button-container">
-                    <button class="calc" id="calc" type="button">Calculate</button>
-                    <button class="clear" id="clear" onclick=clearAll()>Clear</button>
-                </div>
-            </div>
-        </div>
-    
-        <div class="result-container">
-            <div class="header">
-                <h1>Results</h1>
-            </div>
-            <div class="content">
-                <div  class="card maintain">
-                    <h3 id="bmr-title">Maintain Weight</h3>
-                    <p id="result-maintain">0</p>
-                </div>
-                <div id="loss-gain-container">
-                    <div class="weight-loss">
-                        <div class="card">
+            <div>
+                <!-- Result Side -->
+                 <div class="results-side">
+                    
+                    <h3>Results</h3>
+                    
+                    <div class="results-container">
+                        <div  class="result-card maintain">
+                            <h3 id="bmr-title">Maintain Weight</h3>
+                            <p id="result-maintain">0</p>
+                        </div>
+                        <div class="result-card">
                             <h3>Mild Weight Loss</h3>
                             <p id="result-mild-loss">0</p>
                         </div>
-                        <div class="card">
+                        <div class="result-card">
                             <h3>Weight Loss</h3>
                             <p id="result-loss">0</p>
                         </div>
-                        <div class="card">
+                        <div class="result-card">
                             <h3>Extreme Weight Loss</h3>
                             <p id="result-extreme-loss">0</p>
                         </div>
-                    </div>
-                    <div class="weight-gain">
-                        <div class="card">
+                        
+                        <div class="result-card">
                             <h3>Mild Weight Gain</h3>
                             <p id="result-mild-gain">0</p>
                         </div>
-                        <div class="card">
+                        <div class="result-card">
                             <h3>Weight Gain</h3>
                             <p id="result-gain">0</p>
                         </div>
-                        <div class="card">
+                        <div class="result-card">
                             <h3>Extreme Weight Gain</h3>
                             <p id="result-extreme-gain">0</p>
                         </div>
                     </div>
+                    <button class="reset" id="reset" onclick=resetAll()>Start Over</button>
                 </div>
-                <button class="reset" id="reset" onclick=resetAll()>Start Over</button>
             </div>
-        </div>
+        </div>  
     </div>
 
-    <p class="copyright">&#169; 2024 Landon Linn</p>
+    <p id="copyright"></p>
 
     <script src="index.js"></script>
 </body>
