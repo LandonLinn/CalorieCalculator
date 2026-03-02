@@ -139,6 +139,7 @@ button{
 
 .reset{
     margin-top: auto;
+    grid-column: 1 / span 2;
 }
 
 .reset,
@@ -157,17 +158,25 @@ button{
 .results-side{
     padding: 20px;
     height: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 25px 1fr auto;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
 }
 
 .results-side h3{
+    grid-column: 1 / span 2;
     margin-bottom: 4px;
 }
 
 .results-container{
+    height: 100%;
+    grid-column: 1/ span 2;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 8px;
-    padding-bottom: 16px;
+    padding-bottom: 6px;
 }
 
 .result-card{
